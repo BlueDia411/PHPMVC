@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Halaman About</title>
-</head>
-<body>
+
 	<h1>About Me</h1>
-</body>
-</html>
+	<p>Hi, Nama saya <?php= $data['nama']; ?>, saya seorang <?php= $data['pekerjaan']; ?> berumur <?php= $data['umur'];?> tahun</p>
