@@ -9,17 +9,19 @@
 
 	<div class="row">
 		<div class="col-lg-6">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+			<button type="button" class="btn btn-primary tombolTambahData" data-toggle="modal" data-target="#formModal">
 			  Tambah Data Mahasiswa
 			</button>
 			<br>
 			<h3>Daftar Mahasiswa</h3>
 				<?php foreach ($data['mhs'] as $mhs) : ?>
 					<ul class="list-group">
-					  <li class="list-group-item d-flex justify-content-between align-items-center">
+					  <li class="list-group-item">
 					  	<?= $mhs['nama']; ?>
-					  	<a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge badge-primary">Detail</a>	
-					  	</li>
+					  	<a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id'] ?>" class="badge badge-danger float-right ml-2" onclick="return confirm('Anda Yakin akan menghapusnya?');">Hapus</a>
+					  	<a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id'] ?>" class="badge badge-warning float-right ml-2 tampilModalUbah" data-toggle="modal" data-target="#formModal" data-id="<?= $mhs['id'];?>">Ubah</a>
+					  	<a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge badge-primary float-right ml-2">Detail</a>
+					  </li>
 					</ul>
 				<?php endforeach; ?>
 		</div>		
@@ -27,17 +29,18 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="judulModal">Tambah Data Mahasiswa</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah Data Mahasiswa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form action="<?= BASEURL;?>/mahasiswa/tambah" method="post">
+        	<input type="hidden" name="id" id="id">
         	<div class="form-group">
 			    <label for="nama">Nama</label>
 			    <input type="text" class="form-control" id="nama" name="nama">
