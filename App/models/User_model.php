@@ -1,6 +1,6 @@
 <?php 
 class User_model {
-	private $nama = 'Yogi';
+	private $nama = 'Yogi Nugraha';
 
 	public function getUser(){
 		return $this->nama;
