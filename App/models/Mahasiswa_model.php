@@ -1,26 +1,20 @@
 <?php 
 class Mahasiswa_model{
-	private $mhs = [
-		[
-			"nama" => "Yogi Nugraha",
-			"nrp" => "173040001",
-			"email" => "yoginugraha43@unpas.ac.id",
-			"jurusan" => "Teknik Informatika"
-		],
-		[
-			"nama" => "Erdika",
-			"nrp" => "173040002",
-			"email" => "Erdika@unpas.ac.id",
-			"jurusan" => "Teknik Informatika"
-		],
-		[
-			"nama" => "Michael",
-			"nrp" => "173040005",
-			"email" => "Michael@unpas.ac.id",
-			"jurusan" => "Teknik Informatika"
-		]
-	];
+	private $dbh;
+	private $stmt;
+
+	public function __construct(){
+		$dsn = 'mysql:host=localhost;dbname=phpmvc';
+		try {
+			$this->dbh = new PDO($dsn, 'root', '');
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
 	public function getAllMahasiswa(){
-		return $this->mhs;
+		$this->stmt = $this->dbh->prepare('SELECT * FROM mahasiswa');
+		$this->stmt->execute();
+		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
